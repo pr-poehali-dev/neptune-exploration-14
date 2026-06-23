@@ -137,7 +137,7 @@ export function ProgramSection({ scrollToSection }: { scrollToSection?: (i: numb
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start flex-col px-6 pt-20 pb-4 md:px-12 md:pt-20 md:pb-6 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start flex-col px-4 pt-16 pb-3 md:px-12 md:pt-20 md:pb-6 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl flex flex-col h-full">
         {/* Header */}
@@ -147,10 +147,10 @@ export function ProgramSection({ scrollToSection }: { scrollToSection?: (i: numb
           }`}
         >
           <div>
-            <h2 className="mb-0.5 font-sans text-3xl font-light tracking-tight text-foreground md:text-4xl lg:text-5xl">
+            <h2 className="mb-0.5 font-sans text-xl font-light tracking-tight text-foreground md:text-4xl lg:text-5xl">
               Программа
             </h2>
-            <p className="font-mono text-xs text-foreground/50">
+            <p className="font-mono text-[10px] text-foreground/50 md:text-xs">
               / 12–13 сентября · {days[activeDay].location}
             </p>
           </div>
@@ -160,7 +160,7 @@ export function ProgramSection({ scrollToSection }: { scrollToSection?: (i: numb
               <button
                 key={i}
                 onClick={() => setActiveDay(i)}
-                className={`rounded-full border px-3 py-1 font-mono text-xs transition-all duration-300 md:px-4 md:py-1.5 ${
+                className={`rounded-full border px-2.5 py-1 font-mono text-[10px] transition-all duration-300 md:px-4 md:py-1.5 md:text-xs ${
                   activeDay === i
                     ? "border-accent bg-accent/20 text-accent"
                     : "border-foreground/20 text-foreground/50 hover:border-foreground/40 hover:text-foreground/80"
@@ -189,13 +189,13 @@ export function ProgramSection({ scrollToSection }: { scrollToSection?: (i: numb
                 style={{ transitionDelay: `${i * 50}ms` }}
               >
                 {/* Time */}
-                <span className="w-28 shrink-0 font-mono text-[10px] leading-tight text-foreground/35 pt-0.5 md:w-36 md:text-xs">
+                <span className="w-16 shrink-0 font-mono text-[9px] leading-tight text-foreground/35 pt-0.5 md:w-36 md:text-xs">
                   {item.time}
                 </span>
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <p className={`text-sm font-light leading-snug md:text-base ${
+                  <p className={`text-xs font-light leading-snug md:text-base ${
                     item.type === "org" ? "italic text-foreground/50" :
                     item.type === "track" ? "font-medium text-yellow-300" :
                     "text-foreground"
@@ -203,10 +203,10 @@ export function ProgramSection({ scrollToSection }: { scrollToSection?: (i: numb
                     {item.title}
                   </p>
                   {item.subtitle && (
-                    <p className="mt-0.5 text-xs leading-snug text-foreground/55 md:text-sm">{item.subtitle}</p>
+                    <p className="mt-0.5 hidden text-xs leading-snug text-foreground/55 sm:block md:text-sm">{item.subtitle}</p>
                   )}
                   {item.note && (
-                    <p className={`mt-0.5 font-mono text-[10px] leading-snug md:text-xs ${typeColor[item.type]}`}>
+                    <p className={`mt-0.5 hidden font-mono text-[10px] leading-snug sm:block md:text-xs ${typeColor[item.type]}`}>
                       {item.note}
                     </p>
                   )}
@@ -228,7 +228,7 @@ export function ProgramSection({ scrollToSection }: { scrollToSection?: (i: numb
           }`}
           style={{ transitionDelay: "500ms" }}
         >
-          <p className="font-mono text-[10px] text-foreground/40 md:text-xs">Программа предварительная, возможны изменения</p>
+          <p className="hidden font-mono text-[10px] text-foreground/40 sm:block md:text-xs">Программа предварительная, возможны изменения</p>
           <button
             onClick={() => scrollToSection?.(5)}
             className="flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1.5 font-mono text-xs text-accent transition-all hover:bg-accent/20 md:px-4 md:py-2"

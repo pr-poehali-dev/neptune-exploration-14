@@ -26,26 +26,25 @@ export function ContactSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 md:px-12 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 md:px-12 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-[1fr_1.2fr] md:gap-12 lg:gap-20">
+        <div className="grid gap-5 md:grid-cols-[1fr_1.2fr] md:gap-12 lg:gap-20">
 
-          {/* Left — info */}
-          <div className="flex flex-col justify-center">
+          {/* Left — info (скрыт на мобиле) */}
+          <div className="hidden flex-col justify-center md:flex">
             <div
               className={`mb-5 transition-all duration-700 ${
                 isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
               }`}
             >
-              <h2 className="mb-1 font-sans text-3xl font-light leading-[1.05] tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                Регистрация
-                <br />на форум
+              <h2 className="mb-1 font-sans text-xl font-light leading-[1.05] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+                Регистрация на форум
               </h2>
-              <p className="font-mono text-xs text-accent md:text-sm">/ Участие бесплатное</p>
+              <p className="font-mono text-[10px] text-accent md:text-sm">/ Участие бесплатное</p>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               {[
                 { icon: "Calendar", delay: "200ms", text: "12–13 сентября 2026" },
                 { icon: "MapPin", delay: "320ms", text: "г. Иваново" },
@@ -58,8 +57,8 @@ export function ContactSection() {
                   }`}
                   style={{ transitionDelay: delay }}
                 >
-                  <Icon name={icon as "Calendar" | "MapPin" | "Ticket"} className="h-4 w-4 shrink-0 text-accent" />
-                  <p className="text-sm text-foreground md:text-base">{text}</p>
+                  <Icon name={icon as "Calendar" | "MapPin" | "Ticket"} className="h-3.5 w-3.5 shrink-0 text-accent md:h-4 md:w-4" />
+                  <p className="text-xs text-foreground md:text-base">{text}</p>
                 </div>
               ))}
             </div>
@@ -67,9 +66,14 @@ export function ContactSection() {
 
           {/* Right — form */}
           <div className="flex flex-col justify-center">
-            <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-x-6 gap-y-4">
+            {/* Мобильный заголовок */}
+            <div className="mb-4 md:hidden">
+              <h2 className="font-sans text-xl font-light text-foreground">Регистрация на форум</h2>
+              <p className="font-mono text-[10px] text-accent">/ Участие бесплатное · 12–13 сентября · Иваново</p>
+            </div>
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-y-3 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-4">
               <div
-                className={`col-span-2 transition-all duration-700 ${
+                className={`col-span-1 sm:col-span-2 transition-all duration-700 ${
                   isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
                 }`}
                 style={{ transitionDelay: "150ms" }}
@@ -119,7 +123,7 @@ export function ContactSection() {
               </div>
 
               <div
-                className={`col-span-2 pt-2 transition-all duration-700 ${
+                className={`col-span-1 pt-1 sm:col-span-2 sm:pt-2 transition-all duration-700 ${
                   isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
                 style={{ transitionDelay: "570ms" }}

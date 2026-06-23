@@ -16,21 +16,21 @@ export function ServicesSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 md:px-12 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 md:px-12 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-6 transition-all duration-700 ${
+          className={`mb-5 transition-all duration-700 md:mb-8 ${
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
-          <h2 className="mb-1 font-sans text-4xl font-light tracking-tight text-foreground md:text-5xl lg:text-6xl">
+          <h2 className="mb-1 font-sans text-2xl font-light tracking-tight text-foreground md:text-5xl lg:text-6xl">
             Спикеры
           </h2>
-          <p className="font-mono text-xs text-foreground/60 md:text-sm">/ Эксперты лёгкой промышленности</p>
+          <p className="font-mono text-[10px] text-foreground/60 md:text-sm">/ Эксперты лёгкой промышленности</p>
         </div>
 
-        <div className="grid gap-x-8 gap-y-5 md:grid-cols-2 md:gap-x-12 lg:gap-x-20 xl:grid-cols-3 xl:gap-y-6">
+        <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-5 md:gap-x-12 lg:gap-x-20 xl:grid-cols-3 xl:gap-y-6">
           {speakers.map((speaker, i) => (
             <SpeakerCard key={i} speaker={speaker} index={i} isVisible={isVisible} />
           ))}
@@ -67,12 +67,12 @@ function SpeakerCard({
       className={`group transition-all duration-700 ${getRevealClass()}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <div className="mb-1.5 flex items-center gap-2">
-        <div className="h-px w-6 bg-accent/50 transition-all duration-300 group-hover:w-10 group-hover:bg-accent" />
-        <span className="font-mono text-xs text-accent">0{index + 1}</span>
+      <div className="mb-1 flex items-center gap-2">
+        <div className="h-px w-5 bg-accent/50 transition-all duration-300 group-hover:w-8 group-hover:bg-accent md:w-6" />
+        <span className="font-mono text-[10px] text-accent md:text-xs">0{index + 1}</span>
       </div>
-      <h3 className="mb-1 font-sans text-lg font-light text-foreground md:text-xl">{speaker.name}</h3>
-      <p className="text-xs leading-relaxed text-foreground/60 md:text-sm">{speaker.topic}</p>
+      <h3 className="mb-0.5 font-sans text-base font-light text-foreground md:text-xl">{speaker.name}</h3>
+      <p className="text-[11px] leading-relaxed text-foreground/60 md:text-sm">{speaker.topic}</p>
     </div>
   )
 }

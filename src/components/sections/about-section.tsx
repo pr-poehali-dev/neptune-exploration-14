@@ -7,18 +7,18 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 md:px-12 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 md:px-12 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-12 lg:gap-20">
           {/* Left */}
           <div>
             <div
-              className={`mb-5 transition-all duration-700 ${
+              className={`mb-4 transition-all duration-700 md:mb-5 ${
                 isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
               }`}
             >
-              <h2 className="mb-2 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+              <h2 className="mb-2 font-sans text-2xl font-light leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
                 О форуме
                 <br />
                 <span className="text-accent">ИНДУСТРИЯ</span>
@@ -28,22 +28,22 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
             </div>
 
             <div
-              className={`space-y-3 transition-all duration-700 ${
+              className={`space-y-2 transition-all duration-700 md:space-y-3 ${
                 isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
               }`}
               style={{ transitionDelay: "200ms" }}
             >
-              <p className="max-w-md text-sm leading-relaxed text-foreground/80 md:text-base">
+              <p className="max-w-md text-sm leading-relaxed text-foreground/80">
                 12–13 сентября 2026 года в Иванове соберутся эксперты, владельцы фабрик и брендов лёгкой промышленности.
               </p>
-              <p className="max-w-md text-sm leading-relaxed text-foreground/80 md:text-base">
+              <p className="max-w-md text-sm leading-relaxed text-foreground/80">
                 Два дня практики: автоматизация производства, оптимизация процессов, маркетинг и поиск клиентов. Участие бесплатное — нужна только регистрация.
               </p>
             </div>
           </div>
 
           {/* Right — Stats */}
-          <div className="flex flex-col justify-center space-y-6 md:space-y-8">
+          <div className="flex flex-col justify-center space-y-4 md:space-y-8">
             {[
               { value: "2", label: "Дня", sublabel: "12–13 сентября 2026", direction: "right" },
               { value: "7", label: "Спикеров", sublabel: "Эксперты отрасли", direction: "left" },
@@ -56,17 +56,13 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               return (
                 <div
                   key={i}
-                  className={`flex items-baseline gap-4 border-l-2 border-accent/40 pl-4 transition-all duration-700 md:gap-6 md:pl-6 ${revealClass}`}
-                  style={{
-                    transitionDelay: `${300 + i * 150}ms`,
-                    marginLeft: i % 2 === 0 ? "0" : "auto",
-                    maxWidth: i % 2 === 0 ? "100%" : "85%",
-                  }}
+                  className={`flex items-baseline gap-3 border-l-2 border-accent/40 pl-3 transition-all duration-700 md:gap-6 md:pl-6 ${revealClass}`}
+                  style={{ transitionDelay: `${300 + i * 150}ms` }}
                 >
-                  <div className="text-4xl font-light text-foreground md:text-6xl lg:text-7xl">{stat.value}</div>
+                  <div className="text-3xl font-light text-foreground md:text-6xl lg:text-7xl">{stat.value}</div>
                   <div>
-                    <div className="font-sans text-base font-light text-foreground md:text-lg">{stat.label}</div>
-                    <div className="font-mono text-xs text-foreground/50">{stat.sublabel}</div>
+                    <div className="font-sans text-sm font-light text-foreground md:text-lg">{stat.label}</div>
+                    <div className="font-mono text-[10px] text-foreground/50 md:text-xs">{stat.sublabel}</div>
                   </div>
                 </div>
               )
@@ -75,7 +71,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
         </div>
 
         <div
-          className={`mt-8 flex flex-wrap gap-3 transition-all duration-700 ${
+          className={`mt-6 flex flex-wrap gap-3 transition-all duration-700 md:mt-10 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
           style={{ transitionDelay: "750ms" }}

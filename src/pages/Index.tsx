@@ -7,12 +7,14 @@ import { AboutSection } from "@/components/sections/about-section"
 import { ProgramSection } from "@/components/sections/program-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
+import Icon from "@/components/ui/icon"
 import { useRef, useEffect, useState } from "react"
 
 export default function Index() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [currentSection, setCurrentSection] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const touchStartY = useRef(0)
   const touchStartX = useRef(0)
   const shaderContainerRef = useRef<HTMLDivElement>(null)
@@ -212,7 +214,7 @@ export default function Index() {
       </div>
 
       <nav
-        className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-6 transition-opacity duration-700 md:px-12 ${
+        className={`fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-4 py-4 transition-opacity duration-700 md:px-12 md:py-6 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -223,11 +225,12 @@ export default function Index() {
           <img
             src="https://cdn.poehali.dev/projects/ae1e036a-b375-45bd-ad56-d4e27eaef002/bucket/956d5851-bf42-4e09-a901-61a7ab776fd7.png"
             alt="ПромЭксперт"
-            className="h-10 w-auto object-contain"
+            className="h-8 w-auto object-contain md:h-10"
           />
         </button>
 
-        <div className="hidden items-center gap-8 md:flex">
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-6 md:flex lg:gap-8">
           {["Форум", "Темы", "Спикеры", "О форуме", "Программа", "Регистрация"].map((item, index) => (
             <button
               key={item}
@@ -246,10 +249,59 @@ export default function Index() {
           ))}
         </div>
 
-        <MagneticButton variant="secondary" onClick={() => scrollToSection(5)}>
-          Регистрация
-        </MagneticButton>
+        {/* Desktop CTA */}
+        <div className="hidden md:block">
+          <MagneticButton variant="secondary" onClick={() => scrollToSection(5)}>
+            Регистрация
+          </MagneticButton>
+        </div>
+
+        {/* Mobile burger */}
+        <button
+          className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/10 backdrop-blur-md md:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <Icon name={mobileMenuOpen ? "X" : "Menu"} size={18} />
+        </button>
       </nav>
+
+      {/* Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col bg-background/95 backdrop-blur-md md:hidden">
+          <div className="flex items-center justify-between px-4 py-4">
+            <img
+              src="https://cdn.poehali.dev/projects/ae1e036a-b375-45bd-ad56-d4e27eaef002/bucket/956d5851-bf42-4e09-a901-61a7ab776fd7.png"
+              alt="ПромЭксперт"
+              className="h-8 w-auto object-contain"
+            />
+            <button
+              className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/10"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Icon name="X" size={18} />
+            </button>
+          </div>
+          <div className="flex flex-1 flex-col justify-center gap-2 px-6">
+            {["Форум", "Темы", "Спикеры", "О форуме", "Программа"].map((item, index) => (
+              <button
+                key={item}
+                onClick={() => { scrollToSection(index); setMobileMenuOpen(false) }}
+                className={`border-b border-foreground/10 py-4 text-left font-sans text-2xl font-light transition-colors ${
+                  currentSection === index ? "text-accent" : "text-foreground/80"
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+            <button
+              onClick={() => { scrollToSection(5); setMobileMenuOpen(false) }}
+              className="mt-4 rounded-xl bg-accent py-4 text-center font-sans text-lg font-medium text-white"
+            >
+              Зарегистрироваться
+            </button>
+          </div>
+        </div>
+      )}
 
       <div
         ref={scrollContainerRef}
@@ -260,23 +312,23 @@ export default function Index() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {/* Hero Section */}
-        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-12 pt-20 md:px-12 md:pb-20">
+        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-4 pb-10 pt-16 md:px-12 md:pb-20 md:pt-20">
           <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 animate-in fade-in slide-in-from-bottom-4 rounded-full border border-accent/40 bg-accent/15 px-4 py-1.5 backdrop-blur-md duration-700">
-              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              <p className="font-mono text-xs text-foreground/90">12–13 сентября 2026 · Иваново</p>
+            <div className="mb-3 inline-flex items-center gap-2 animate-in fade-in slide-in-from-bottom-4 rounded-full border border-accent/40 bg-accent/15 px-3 py-1 backdrop-blur-md duration-700 md:mb-4 md:px-4 md:py-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse md:h-2 md:w-2" />
+              <p className="font-mono text-[11px] text-foreground/90 md:text-xs">12–13 сентября 2026 · Иваново</p>
             </div>
-            <h1 className="mb-5 animate-in fade-in slide-in-from-bottom-8 font-sans text-4xl font-light leading-[1.05] tracking-tight text-foreground duration-1000 md:text-6xl lg:text-7xl">
+            <h1 className="mb-4 animate-in fade-in slide-in-from-bottom-8 font-sans text-3xl font-light leading-[1.05] tracking-tight text-foreground duration-1000 md:mb-5 md:text-6xl lg:text-7xl">
               <span className="text-balance">
                 Форум <span className="font-semibold text-accent">ИНДУСТРИЯ</span> БУДУЩЕГО 2026
               </span>
             </h1>
-            <p className="mb-6 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-base leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-lg">
+            <p className="mb-5 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-sm leading-relaxed text-foreground/90 duration-1000 delay-200 md:mb-6 md:text-lg">
               <span className="text-pretty">
                 Все актуальные темы лёгкой промышленности — от автоматизации производства до поиска клиентов. Участие бесплатное, нужна только регистрация.
               </span>
             </p>
-            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
+            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-3 duration-1000 delay-300 sm:flex-row sm:items-center">
               <MagneticButton
                 size="lg"
                 variant="primary"
@@ -290,11 +342,11 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-in fade-in duration-1000 delay-500">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-in fade-in duration-1000 delay-500">
             <div className="flex items-center gap-2">
-              <p className="font-mono text-xs text-foreground/80">Листайте вправо</p>
-              <div className="flex h-6 w-12 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15 backdrop-blur-md">
-                <div className="h-2 w-2 animate-pulse rounded-full bg-foreground/80" />
+              <p className="font-mono text-[10px] text-foreground/80 md:text-xs">Листайте вправо</p>
+              <div className="flex h-5 w-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15 backdrop-blur-md md:h-6 md:w-12">
+                <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-foreground/80 md:h-2 md:w-2" />
               </div>
             </div>
           </div>
