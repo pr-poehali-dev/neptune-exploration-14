@@ -20,21 +20,21 @@ export function WorkSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start flex-col justify-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start flex-col justify-center px-6 md:px-12 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-8 transition-all duration-700 md:mb-12 ${
+          className={`mb-6 transition-all duration-700 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
-          <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <h2 className="mb-1 font-sans text-4xl font-light tracking-tight text-foreground md:text-5xl lg:text-6xl">
             Темы форума
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Лёгкая промышленность · от идеи до клиента</p>
+          <p className="font-mono text-xs text-foreground/60 md:text-sm">/ Лёгкая промышленность · от идеи до клиента</p>
         </div>
 
-        <div className="space-y-4 md:space-y-6">
+        <div className="space-y-0">
           {topics.map((topic, i) => (
             <TopicCard key={i} topic={topic} index={i} isVisible={isVisible} />
           ))}
@@ -43,28 +43,26 @@ export function WorkSection() {
 
       {/* Бегущая строка партнёров */}
       <div
-        className={`mt-10 w-full overflow-hidden border-y border-foreground/10 py-4 transition-all duration-700 md:mt-16 ${
+        className={`mt-8 w-full overflow-hidden border-y border-foreground/10 py-3 transition-all duration-700 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
         style={{ transitionDelay: "600ms" }}
       >
-        <div className="mb-3 px-6 md:px-12 lg:px-16">
-          <p className="font-mono text-xs text-foreground/50">/ Партнёры форума</p>
+        <div className="mb-2 px-6 md:px-12 lg:px-16">
+          <p className="font-mono text-xs text-foreground/40">/ Партнёры форума</p>
         </div>
         <div className="relative flex w-full overflow-hidden">
-          <div className="flex shrink-0 animate-marquee items-center gap-10 whitespace-nowrap pr-10">
+          <div className="flex shrink-0 animate-marquee items-center gap-8 whitespace-nowrap pr-8">
             {partners.map((p, i) => (
-              <span key={i} className="font-sans text-lg font-light text-foreground/70 md:text-2xl">
-                {p}
-                <span className="ml-10 text-accent">•</span>
+              <span key={i} className="font-sans text-base font-light text-foreground/60 md:text-lg">
+                {p}<span className="ml-8 text-accent">•</span>
               </span>
             ))}
           </div>
-          <div className="flex shrink-0 animate-marquee items-center gap-10 whitespace-nowrap pr-10" aria-hidden="true">
+          <div className="flex shrink-0 animate-marquee items-center gap-8 whitespace-nowrap pr-8" aria-hidden="true">
             {partners.map((p, i) => (
-              <span key={i} className="font-sans text-lg font-light text-foreground/70 md:text-2xl">
-                {p}
-                <span className="ml-10 text-accent">•</span>
+              <span key={i} className="font-sans text-base font-light text-foreground/60 md:text-lg">
+                {p}<span className="ml-8 text-accent">•</span>
               </span>
             ))}
           </div>
@@ -84,33 +82,31 @@ function TopicCard({
   isVisible: boolean
 }) {
   const getRevealClass = () => {
-    if (!isVisible) {
-      return topic.direction === "left" ? "-translate-x-16 opacity-0" : "translate-x-16 opacity-0"
-    }
+    if (!isVisible) return topic.direction === "left" ? "-translate-x-16 opacity-0" : "translate-x-16 opacity-0"
     return "translate-x-0 opacity-100"
   }
 
   return (
     <div
-      className={`group flex items-center justify-between border-b border-foreground/10 py-5 transition-all duration-700 hover:border-accent/40 md:py-6 ${getRevealClass()}`}
+      className={`group flex items-center justify-between border-b border-foreground/10 py-4 transition-all duration-700 hover:border-accent/40 ${getRevealClass()}`}
       style={{
-        transitionDelay: `${index * 150}ms`,
+        transitionDelay: `${index * 120}ms`,
         marginLeft: index % 2 === 0 ? "0" : "auto",
         maxWidth: index % 2 === 0 ? "85%" : "90%",
       }}
     >
-      <div className="flex items-baseline gap-4 md:gap-8">
-        <span className="font-mono text-sm text-accent/60 transition-colors group-hover:text-accent md:text-base">
+      <div className="flex items-baseline gap-4 md:gap-6">
+        <span className="font-mono text-xs text-accent/60 transition-colors group-hover:text-accent md:text-sm">
           {topic.number}
         </span>
         <div>
-          <h3 className="mb-1 font-sans text-xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
+          <h3 className="mb-0.5 font-sans text-lg font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-2xl lg:text-3xl">
             {topic.title}
           </h3>
-          <p className="font-mono text-xs text-foreground/50 md:text-sm">{topic.category}</p>
+          <p className="font-mono text-xs text-foreground/50">{topic.category}</p>
         </div>
       </div>
-      <span className="font-mono text-xs text-foreground/30 md:text-sm">{topic.year}</span>
+      <span className="font-mono text-xs text-foreground/30">{topic.year}</span>
     </div>
   )
 }

@@ -7,18 +7,18 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 md:px-12 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
-          {/* Left side - Story */}
+        <div className="grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
+          {/* Left */}
           <div>
             <div
-              className={`mb-6 transition-all duration-700 md:mb-12 ${
+              className={`mb-5 transition-all duration-700 ${
                 isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
               }`}
             >
-              <h2 className="mb-3 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
+              <h2 className="mb-2 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
                 О форуме
                 <br />
                 <span className="text-accent">ИНДУСТРИЯ</span>
@@ -28,48 +28,45 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
             </div>
 
             <div
-              className={`space-y-3 transition-all duration-700 md:space-y-4 ${
+              className={`space-y-3 transition-all duration-700 ${
                 isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
               }`}
               style={{ transitionDelay: "200ms" }}
             >
-              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
+              <p className="max-w-md text-sm leading-relaxed text-foreground/80 md:text-base">
                 12–13 сентября 2026 года в Иванове соберутся эксперты, владельцы фабрик и брендов лёгкой промышленности.
               </p>
-              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
+              <p className="max-w-md text-sm leading-relaxed text-foreground/80 md:text-base">
                 Два дня практики: автоматизация производства, оптимизация процессов, маркетинг и поиск клиентов. Участие бесплатное — нужна только регистрация.
               </p>
             </div>
           </div>
 
-          {/* Right side - Stats with creative layout */}
-          <div className="flex flex-col justify-center space-y-6 md:space-y-12">
+          {/* Right — Stats */}
+          <div className="flex flex-col justify-center space-y-6 md:space-y-8">
             {[
               { value: "2", label: "Дня", sublabel: "12–13 сентября 2026", direction: "right" },
               { value: "7", label: "Спикеров", sublabel: "Эксперты отрасли", direction: "left" },
               { value: "0₽", label: "Участие", sublabel: "Бесплатно по регистрации", direction: "right" },
             ].map((stat, i) => {
-              const getRevealClass = () => {
-                if (!isVisible) {
-                  return stat.direction === "left" ? "-translate-x-16 opacity-0" : "translate-x-16 opacity-0"
-                }
-                return "translate-x-0 opacity-100"
-              }
+              const revealClass = !isVisible
+                ? stat.direction === "left" ? "-translate-x-16 opacity-0" : "translate-x-16 opacity-0"
+                : "translate-x-0 opacity-100"
 
               return (
                 <div
                   key={i}
-                  className={`flex items-baseline gap-4 border-l border-foreground/30 pl-4 transition-all duration-700 md:gap-8 md:pl-8 ${getRevealClass()}`}
+                  className={`flex items-baseline gap-4 border-l-2 border-accent/40 pl-4 transition-all duration-700 md:gap-6 md:pl-6 ${revealClass}`}
                   style={{
                     transitionDelay: `${300 + i * 150}ms`,
                     marginLeft: i % 2 === 0 ? "0" : "auto",
                     maxWidth: i % 2 === 0 ? "100%" : "85%",
                   }}
                 >
-                  <div className="text-3xl font-light text-foreground md:text-6xl lg:text-7xl">{stat.value}</div>
+                  <div className="text-4xl font-light text-foreground md:text-6xl lg:text-7xl">{stat.value}</div>
                   <div>
-                    <div className="font-sans text-base font-light text-foreground md:text-xl">{stat.label}</div>
-                    <div className="font-mono text-xs text-foreground/60">{stat.sublabel}</div>
+                    <div className="font-sans text-base font-light text-foreground md:text-lg">{stat.label}</div>
+                    <div className="font-mono text-xs text-foreground/50">{stat.sublabel}</div>
                   </div>
                 </div>
               )
@@ -78,16 +75,16 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
         </div>
 
         <div
-          className={`mt-8 flex flex-wrap gap-3 transition-all duration-700 md:mt-16 md:gap-4 ${
+          className={`mt-8 flex flex-wrap gap-3 transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
           }`}
           style={{ transitionDelay: "750ms" }}
         >
-          <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
+          <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(5)}>
             Зарегистрироваться
           </MagneticButton>
-          <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(2)}>
-            Спикеры форума
+          <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(4)}>
+            Программа
           </MagneticButton>
         </div>
       </div>
