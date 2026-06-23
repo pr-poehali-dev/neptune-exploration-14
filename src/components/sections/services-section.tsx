@@ -1,5 +1,15 @@
 import { useReveal } from "@/hooks/use-reveal"
 
+const speakers = [
+  { name: "Евгений Криницин", topic: "ERP для швейных производств", direction: "top" },
+  { name: "Алексей Антонов", topic: "СЕО «ПромЭксперт» · развитие промышленных предприятий и оптимизация процессов", direction: "right" },
+  { name: "Антон Гуреев", topic: "Управление Fashion-проектами · операционное управление, маркетинг и продажи в модной индустрии", direction: "left" },
+  { name: "Керим Жумаев", topic: "Учредитель ООО «НФЭС» · основатель бренда женской одежды nfes", direction: "bottom" },
+  { name: "Дмитрий Тугушев", topic: "Директор департамента экономического развития и торговли Ивановской области", direction: "left" },
+  { name: "Никита Серов", topic: "Блогер, предприниматель · владелец компании «Serovski Brand»", direction: "right" },
+  { name: "Юлия Смирнова", topic: "Эксперт в автоматизации производств · стратегическое управление и развитие фабрик", direction: "bottom" },
+]
+
 export function ServicesSection() {
   const { ref, isVisible } = useReveal(0.3)
 
@@ -10,40 +20,19 @@ export function ServicesSection() {
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-8 transition-all duration-700 md:mb-12 ${
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Услуги
+            Спикеры
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши компетенции</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Эксперты лёгкой промышленности</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
-          {[
-            {
-              title: "Веб-разработка",
-              description: "Создание современных веб-приложений любой сложности",
-              direction: "top",
-            },
-            {
-              title: "UI/UX Дизайн",
-              description: "Проектирование удобных и красивых интерфейсов",
-              direction: "right",
-            },
-            {
-              title: "Мобильные приложения",
-              description: "Кроссплатформенная разработка для iOS и Android",
-              direction: "left",
-            },
-            {
-              title: "Консалтинг",
-              description: "Техническая экспертиза и стратегическое планирование",
-              direction: "bottom",
-            },
-          ].map((service, i) => (
-            <ServiceCard key={i} service={service} index={i} isVisible={isVisible} />
+        <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 md:gap-x-16 md:gap-y-8 lg:gap-x-24 xl:grid-cols-3">
+          {speakers.map((speaker, i) => (
+            <SpeakerCard key={i} speaker={speaker} index={i} isVisible={isVisible} />
           ))}
         </div>
       </div>
@@ -51,18 +40,18 @@ export function ServicesSection() {
   )
 }
 
-function ServiceCard({
-  service,
+function SpeakerCard({
+  speaker,
   index,
   isVisible,
 }: {
-  service: { title: string; description: string; direction: string }
+  speaker: { name: string; topic: string; direction: string }
   index: number
   isVisible: boolean
 }) {
   const getRevealClass = () => {
     if (!isVisible) {
-      switch (service.direction) {
+      switch (speaker.direction) {
         case "left":
           return "-translate-x-16 opacity-0"
         case "right":
@@ -82,15 +71,15 @@ function ServiceCard({
     <div
       className={`group transition-all duration-700 ${getRevealClass()}`}
       style={{
-        transitionDelay: `${index * 150}ms`,
+        transitionDelay: `${index * 100}ms`,
       }}
     >
-      <div className="mb-3 flex items-center gap-3">
-        <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />
-        <span className="font-mono text-xs text-foreground/60">0{index + 1}</span>
+      <div className="mb-2 flex items-center gap-3">
+        <div className="h-px w-8 bg-accent/50 transition-all duration-300 group-hover:w-12 group-hover:bg-accent" />
+        <span className="font-mono text-xs text-accent">0{index + 1}</span>
       </div>
-      <h3 className="mb-2 font-sans text-2xl font-light text-foreground md:text-3xl">{service.title}</h3>
-      <p className="max-w-sm text-sm leading-relaxed text-foreground/80 md:text-base">{service.description}</p>
+      <h3 className="mb-2 font-sans text-xl font-light text-foreground md:text-2xl">{speaker.name}</h3>
+      <p className="max-w-sm text-sm leading-relaxed text-foreground/70 md:text-base">{speaker.topic}</p>
     </div>
   )
 }

@@ -182,8 +182,8 @@ export default function Index() {
       >
         <Shader className="h-full w-full">
           <Swirl
-            colorA="#1275d8"
-            colorB="#e19136"
+            colorA="#0072ff"
+            colorB="#8bc53f"
             speed={0.8}
             detail={0.8}
             blend={50}
@@ -198,8 +198,8 @@ export default function Index() {
             baseColor="#0066ff"
             upColor="#0066ff"
             downColor="#d1d1d1"
-            leftColor="#e19136"
-            rightColor="#e19136"
+            leftColor="#8bc53f"
+            rightColor="#8bc53f"
             intensity={0.9}
             radius={1.8}
             momentum={25}
@@ -219,14 +219,14 @@ export default function Index() {
           onClick={() => scrollToSection(0)}
           className="flex items-center gap-2 transition-transform hover:scale-105"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground/15 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-foreground/25">
-            <span className="font-sans text-xl font-bold text-foreground">F</span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent backdrop-blur-md transition-all duration-300 hover:scale-110">
+            <span className="font-sans text-lg font-bold text-white">ПЭ</span>
           </div>
-          <span className="font-sans text-xl font-semibold tracking-tight text-foreground">Flowrise</span>
+          <span className="font-sans text-xl font-semibold tracking-tight text-foreground">ИНДУСТРИЯ БУДУЩЕГО</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["Главная", "Работы", "Услуги", "О нас", "Контакты"].map((item, index) => (
+          {["Форум", "Темы", "Спикеры", "Партнёры", "Регистрация"].map((item, index) => (
             <button
               key={item}
               onClick={() => scrollToSection(index)}
@@ -245,7 +245,7 @@ export default function Index() {
         </div>
 
         <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
-          Начать
+          Регистрация
         </MagneticButton>
       </nav>
 
@@ -260,17 +260,18 @@ export default function Index() {
         {/* Hero Section */}
         <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
           <div className="max-w-3xl">
-            <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
-              <p className="font-mono text-xs text-foreground/90">Современные технологии</p>
+            <div className="mb-4 inline-flex items-center gap-2 animate-in fade-in slide-in-from-bottom-4 rounded-full border border-accent/40 bg-accent/15 px-4 py-1.5 backdrop-blur-md duration-700">
+              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+              <p className="font-mono text-xs text-foreground/90">12–13 сентября 2026 · Иваново</p>
             </div>
-            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
+            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-5xl font-light leading-[1.05] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
               <span className="text-balance">
-                Цифровое будущее
+                Форум <span className="font-semibold text-accent">ИНДУСТРИЯ</span> БУДУЩЕГО 2026
               </span>
             </h1>
             <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
               <span className="text-pretty">
-                Создаем современные веб-приложения и цифровые продукты, которые помогают бизнесу расти и развиваться.
+                Все актуальные темы лёгкой промышленности — от автоматизации производства до поиска клиентов. Участие бесплатное, нужна только регистрация.
               </span>
             </p>
             <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
@@ -279,10 +280,10 @@ export default function Index() {
                 variant="primary"
                 onClick={() => scrollToSection(4)}
               >
-                Обсудить проект
+                Зарегистрироваться
               </MagneticButton>
               <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(2)}>
-                Наши услуги
+                Спикеры форума
               </MagneticButton>
             </div>
           </div>
